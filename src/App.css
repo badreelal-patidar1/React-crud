@@ -1,0 +1,118 @@
+#alert{
+  margin-top: 10px;
+}
+
+.recipeName {
+  font-family: fantasy;
+  font-size: 50px;
+  font-weight: 500;
+  padding-top: 20px;
+}
+
+/** NavLinks **/
+
+.home img {
+  height: 515px;
+  width: 500px;
+}
+
+/** RecipeCard **/
+
+.RecipeCard {
+  float: left;
+  margin: 10px;
+  width: 350px;
+  height: 340px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
+}
+
+.RecipeCard:hover {
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+
+.table:hover {
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+
+.table {
+  margin-top: 20px;
+}
+
+.media {
+  width: 200px;
+  height: 160px;
+  padding-top: 30px;
+}
+
+.card-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 30px;
+  font-weight: 200;
+  line-height: 60px;
+  margin: 10px 0;
+}
+
+.card-read {
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 6px;
+  margin: 5px 0 20px;
+  position: relative;
+  text-align: right;
+  text-transform: uppercase;
+}
+
+.card-read:after {
+  background-color: #b8bddd;
+  content: "";
+  display: block;
+  height: 1px;
+  position: absolute;
+  top: 9px;
+  width: 60%;
+}
+
+/** RecipeForm **/
+
+input[type=text] {
+  margin-bottom: 20px;
+  margin-top: 10px;
+  width: 100%;
+  padding: 15px;
+  border-radius: 5px;
+  border: 1px solid #A9A9A9;
+}
+
+/* button[type=submit] {
+  margin-bottom: 20px;
+  width: 100%;
+  padding: 15px;
+  border-radius: 5px;
+  border: 1px solid #A9A9A9;
+  background-color: #007acc;
+  color: #F0F8FF;
+  opacity: 0.5;
+  font-size: 15px;
+  cursor: pointer;
+} */
+
+button {
+  padding: 0px;
+  margin-left: 5px;
+  margin-top: 10px;
+}
+
+textarea {
+  width: 100%;
+  padding: 15px;
+  margin-top: 10px;
+  border: 1px solid #A9A9A9;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  resize: none;
+}
+
+input[type=text]:focus, textarea:focus {
+  border-color: #4697e4;
+}
