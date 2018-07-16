@@ -30,7 +30,7 @@ RUN yarn start or npm start
 Now your backend start a http://localhost:8080
 
 
-##Frontend (React Js) setup
+## Frontend (React Js) setup
 
 SETP-5
 
