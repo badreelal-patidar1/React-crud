@@ -30,16 +30,17 @@ class Colleges extends Component {
   handleUpdate(val) {
     this.setState({ value: val });
   }
+
   //render DOM
   render() {
     const { colleges } = this.props
     return (
       <div>
-        <button className="btn btn-primary" data-target="#update" data-toggle="modal"> Add<i className="fas fa-plus-circle"></i></button>
+        <button className=" btn btn-primary" data-target="#update" data-toggle="modal"> Add<i className="fas fa-plus-circle"></i></button>
         {!colleges.length ? <div id="alert" className="alert alert-info">College not found</div> : null}
 
         <div className="row">
-          <div className="col-md-12 table-responsive-md">
+          <div className="col-md-12 table-responsive-sm">
             <table className="table table-sm table-bordered table-hover ">
               <thead className="thead-dark">
                 <tr>

@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { Field, reduxForm } from 'redux-form'
 import { connect } from 'react-redux';
-import { createUser,search } from "../../actions/userAction";
-
-
+import { createUser, search } from "../../actions/userAction";
+import renderField from './../../Common/renderField';
+import { Radio } from './../../Common/radio';
 class CollegeForm extends Component {
 
     componentWillReceiveProps(nextProps) {
@@ -19,28 +19,11 @@ class CollegeForm extends Component {
         }
     }
     onSumbit(values) {
-        this.props.createUser(values,()=>{
+        this.props.createUser(values, () => {
             this.props.search();
         })
     }
-    renderField = ({
-        input,
-        label,
-        type,
-        meta: { touched, error, warning }
-    }) => (
-            <div>
-                <div className="form-group">
-                    <label className="col-lg-3 col-form-label form-control-label" >{label}</label>
-                    <div className="col-sm-10">
-                        <input {...input} placeholder={label} type={type} className="form-control" />
-                        {touched &&
-                            ((error && <small className="form-text text-danger">{error}</small>) ||
-                                (warning && <span>{warning}</span>))}
-                    </div>
-                </div>
-            </div>
-        )
+
     render() {
         const { handleSubmit, pristine, submitting, invalid } = this.props
         const form = (
@@ -48,50 +31,58 @@ class CollegeForm extends Component {
                 <Field
                     label="First Name"
                     name="firstName"
-                    component={this.renderField}
+                    component={renderField}
                     validate={[required, minLength2]}
                 />
                 <Field
                     label="Last Name"
                     name="lastName"
-                    component={this.renderField}
+                    component={renderField}
                     validate={[required, minLength2]}
                 />
                 <Field
                     label="Login"
                     name="login"
-                    component={this.renderField}
+                    component={renderField}
                     validate={[required, email]}
                 />
                 <Field
                     label="Password"
                     name="password"
                     type="password"
-                    component={this.renderField}
+                    component={renderField}
                     validate={[required, minLength2]}
                 />
                 <Field
                     label="Date_of_birth"
                     name="dob"
-                    component={this.renderField}
-                    validate={[required, minLength2]}
+                    component={renderField}
+                    validate={[required, minLength2, dob]}
                 />
 
                 <Field
                     label="Mobile No"
                     name="mobileNo"
-                    component={this.renderField}
+                    component={renderField}
                     validate={[required, phoneNumber]}
                 />
                 <Field
                     label="Role Id"
                     name="roleId"
-                    component={this.renderField}
+                    component={renderField}
                     validate={[required]}
                 />
-
+                <Field
+                    name="gender"
+                    label="Gender"
+                    component={Radio}
+                    options={{
+                        Male: 'Male',
+                        Female: 'Female',
+                    }}
+                />
                 <button className="btn btn-primary" disabled={invalid || pristine || submitting} type="submit">Submit</button>
-            </form>
+            </form >
         )
         return (
             <div>
@@ -120,8 +111,8 @@ export const email = value =>
         : undefined
 
 export const dob = value =>
-    value && !/^(19[5-9][0-9]|20[0-4][0-9]|2050)[-/](0?[1-9]|1[0-2])[-/](0?[1-9]|[12][0-9]|3[01])$/i.test(value)
-        ? 'Invalid phone number, must be 10 digits or start with 0'
+    value && !/^\d(19[5-9][0-9]|20[0-4][0-9]|2050)[-](0?[1-9]|1[0-2])[-](0?[1-9]|[12][0-9]|3[01])$/i.test(value)
+        ? 'Please enter "YYYY-MM-DD" this format'
         : undefined
 
 function mapStateToProps(state, ownprops) {
@@ -130,5 +121,5 @@ function mapStateToProps(state, ownprops) {
 
 
 export default reduxForm({
-    form: 'NoteNewFormUnique',
-})(connect(mapStateToProps, { createUser,search })(CollegeForm));
+    form: 'UserForm',
+})(connect(mapStateToProps, { createUser, search })(CollegeForm));

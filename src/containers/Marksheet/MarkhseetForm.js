@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Field, reduxForm } from 'redux-form'
 import { connect } from 'react-redux';
 import { createMarksheet, search } from "../../actions/marksheetAction";
-
+import renderField from './../../Common/renderField';
 
 class MarksheetForm extends Component {
 
@@ -23,24 +23,6 @@ class MarksheetForm extends Component {
             this.props.search();
         });
     }
-    renderField = ({
-        input,
-        label,
-        type,
-        meta: { touched, error, warning }
-    }) => (
-            <div>
-                <div className="form-group">
-                    <label className="col-lg-3 col-form-label form-control-label" >{label}</label>
-                    <div className="col-sm-10">
-                        <input {...input} placeholder={label} type={type} className="form-control" />
-                        {touched &&
-                            ((error && <small className="form-text text-danger">{error}</small>) ||
-                                (warning && <span>{warning}</span>))}
-                    </div>
-                </div>
-            </div>
-        )
     render() {
         const { handleSubmit, pristine, submitting, invalid } = this.props
         const form = (
@@ -48,37 +30,37 @@ class MarksheetForm extends Component {
                 <Field
                     label="Roll No"
                     name="rollNo"
-                    component={this.renderField}
+                    component={renderField}
                     validate={[required, minLength2]}
                 />
                 <Field
                     label="Student Id"
                     name="studentId"
-                    component={this.renderField}
+                    component={renderField}
                     validate={[required, minLength2, student]}
                 />
                 <Field
                     label="name"
                     name="name"
-                    component={this.renderField}
+                    component={renderField}
                     validate={[required, minLength2]}
                 />
                 <Field
                     label="Physics"
                     name="physics"
-                    component={this.renderField}
+                    component={renderField}
                     validate={[required, marks]}
                 />
                 <Field
                     label="Chemistry"
                     name="chemistry"
-                    component={this.renderField}
+                    component={renderField}
                     validate={[required, marks]}
                 />
                 <Field
                     label="Maths"
                     name="maths"
-                    component={this.renderField}
+                    component={renderField}
                     validate={[required, marks]}
                 />
                 <button className="btn btn-primary" disabled={invalid || pristine || submitting} type="submit">Submit</button>

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Field, reduxForm } from 'redux-form'
 import { connect } from 'react-redux';
 import { createCollege, search } from "../../actions/collegeActions";
+import renderField from './../../Common/renderField';
 
 class CollegeForm extends Component {
 
@@ -23,65 +24,45 @@ class CollegeForm extends Component {
     onSumbit(values) {
         this.props.createCollege(values, () => {
             this.props.search();
+            this.props.reset();
         });
     }
-
-    //Input field
-    renderField = ({
-        input,
-        label,
-        type,
-        meta: { touched, error, warning }
-    }) => (
-            <div>
-                <div className="form-group">
-                    <label className="col-lg-3 col-form-label form-control-label" >{label}</label>
-                    <div className="col-sm-10">
-                        <input {...input} placeholder={label} type={type} className="form-control" />
-                        {touched &&
-                            ((error && <small className="form-text text-danger">{error}</small>) ||
-                                (warning && <span>{warning}</span>))}
-                    </div>
-                </div>
-            </div>
-        )
-
     //render DOM
     render() {
-        const { handleSubmit, pristine, submitting, invalid } = this.props
+        const { handleSubmit, submitSucceeded, pristine, submitting, invalid } = this.props
         const form = (
-            <form onSubmit={handleSubmit(this.onSumbit.bind(this))}>
+            <form onSubmit={handleSubmit(this.onSumbit.bind(this))} >
                 <Field
                     label="College Name"
                     name="name"
-                    component={this.renderField}
+                    component={renderField}
                     validate={[required, minLength2]}
                 />
                 <Field
                     label="Address"
                     name="address"
-                    component={this.renderField}
+                    component={renderField}
                     validate={[required, minLength2]}
                 />
                 <Field
                     label="State"
                     name="state"
-                    component={this.renderField}
+                    component={renderField}
                     validate={[required, minLength2]}
                 />
                 <Field
                     label="City"
                     name="city"
-                    component={this.renderField}
+                    component={renderField}
                     validate={[required, minLength2]}
                 />
                 <Field
                     label="PhoneNo"
                     name="phoneNo"
-                    component={this.renderField}
+                    component={renderField}
                     validate={[required, phoneNumber]}
                 />
-                <button className="btn btn-primary" disabled={invalid || pristine || submitting} type="submit">Submit</button>
+                <button className="btn btn-primary" disabled={invalid || pristine || submitting || submitSucceeded} type="submit">Submit</button>
             </form>
         )
         return (
@@ -107,7 +88,10 @@ export const phoneNumber = value =>
         : undefined
 
 function mapStateToProps(state, ownprops) {
-    return { initialValues: ownprops.college };
+    return {
+        initialValues: ownprops.college,
+        enableReinitialize: true
+    };
 }
 //export class 
 export default reduxForm({

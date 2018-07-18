@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Field, reduxForm } from 'redux-form'
 import { connect } from 'react-redux';
 import { createRole, search } from "../../actions/roleAction";
-
+import renderField from './../../Common/renderField';
 
 class CollegeForm extends Component {
 
@@ -23,24 +23,7 @@ class CollegeForm extends Component {
             this.props.search();
         });
     }
-    renderField = ({
-        input,
-        label,
-        type,
-        meta: { touched, error, warning }
-    }) => (
-            <div>
-                <div className="form-group">
-                    <label className="col-lg-3 col-form-label form-control-label" >{label}</label>
-                    <div className="col-sm-10">
-                        <input {...input} placeholder={label} type={type} className="form-control" />
-                        {touched &&
-                            ((error && <small className="form-text text-danger">{error}</small>) ||
-                                (warning && <span>{warning}</span>))}
-                    </div>
-                </div>
-            </div>
-        )
+
     render() {
         const { handleSubmit, pristine, submitting, invalid } = this.props
         const form = (
@@ -48,13 +31,13 @@ class CollegeForm extends Component {
                 <Field
                     label="Name"
                     name="name"
-                    component={this.renderField}
+                    component={renderField}
                     validate={[required, minLength2]}
                 />
                 <Field
                     label="Description"
                     name="description"
-                    component={this.renderField}
+                    component={renderField}
                     validate={[required, minLength2]}
                 />
                 <button className="btn btn-primary" disabled={invalid || pristine || submitting} type="submit">Submit</button>
@@ -84,5 +67,5 @@ function mapStateToProps(state, ownprops) {
 
 
 export default reduxForm({
-    form: 'NoteNewFormUnique',
+    form: 'RoleForm',
 })(connect(mapStateToProps, { createRole, search })(CollegeForm));

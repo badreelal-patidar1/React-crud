@@ -11,20 +11,23 @@ const Navbar = () => {
         </button>
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav">
-            <li className="nav-item active">
-              <Link className="nav-link" to="/colleges">College <span className="sr-only">(current)</span></Link>
+            <li className="nav-item hvr-underline-from-center ">
+              <Link className="nav-link active" to="/">Home <span className="sr-only">(current)</span></Link>
             </li>
-            <li className="nav-item ">
-              <Link className="nav-link" to="/marksheet">Marksheet <span className="sr-only"></span></Link>
+            <li className="nav-item hvr-underline-from-center ">
+              <Link className="nav-link hvr-underline-from-center" to="/colleges">College <span className="sr-only"></span></Link>
             </li>
-            <li className="nav-item ">
-              <Link className="nav-link" to="/role">Role <span className="sr-only"></span></Link>
+            <li className="nav-item hvr-underline-from-center ">
+              <Link className="nav-link hvr-underline-from-center" to="/marksheet">Marksheet <span className="sr-only"></span></Link>
             </li>
-            <li className="nav-item ">
-              <Link className="nav-link" to="/user">User <span className="sr-only"></span></Link>
+            <li className="nav-item hvr-underline-from-center">
+              <Link className="nav-link hvr-underline-from-center" to="/role">Role <span className="sr-only"></span></Link>
             </li>
-            <li className="nav-item ">
-              <Link className="nav-link" to="/student">Student <span className="sr-only"></span></Link>
+            <li className="nav-item hvr-underline-from-center">
+              <Link className="nav-link hvr-underline-from-center" to="/user">User <span className="sr-only"></span></Link>
+            </li>
+            <li className="nav-item hvr-underline-from-center">
+              <Link className="nav-link hvr-underline-from-center" to="/student">Student <span className="sr-only"></span></Link>
             </li>
           </ul>
         </div>
