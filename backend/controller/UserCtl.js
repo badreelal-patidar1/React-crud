@@ -67,12 +67,12 @@ class UserCtl extends BaseCtl {
                     var transporter = nodemailer.createTransport({
                         service: 'gmail',
                         auth: {
-                            user: 'bldon786@gmail.com',
-                            pass: '9424853918'
+                            user: 'your@gmail.com',
+                            pass: 'password'
                         }
                     });
                     var mailOptions = {
-                        from: 'bldon786@gmail.com',
+                        from: 'your@gmail.com',
                         to: result[0].login,
                         subject: 'Know Your password',
                         text: 'Your password is:' + result[0].password
